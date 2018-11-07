@@ -10,13 +10,15 @@ def multiply(a, b):
 def divide(a, b):
     return a / b 
 
-cmd = input("Input(usage: a, b)>>")
+cmd = input("Input>>")
 print(cmd)
 cmds = cmd.split(" ")
 a = int(cmds[0])
 b = int(cmd[2])
 op = cmds[1]
 
+r = 0
+for r in range(4)
 if op == '+':
     r = plus(a, b)
 elif op == '-':

@@ -1,5 +1,8 @@
-cmd = input("Input(usage: 이름, 나이, 성별")>> ")
+cmd = input("Input(usage: 이름, 나이, 성별)>> ")
 print(cmd)
+
+
+cmd = 0
 
 # 1. 값이 존재하는 여부 체크 
 if cmd == "":
