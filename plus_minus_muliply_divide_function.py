@@ -10,8 +10,17 @@ def multiply(a, b):
 def divide(a, b):
     return a / b 
 
-cmd = input("Input(usage: num1, num2)>>")
+cmd = input("Input(usage: a, b)>>")
 print(cmd)
-cmds = cdm.split(",")
+cmds = and.split(",")
+a = int(cmds[0])
+b = int(cmd[2])
+op = cmds[1]
+
+if op == '+':
+    r = plus(a, b)
+elif op == '-'
+print("Answer is ", r)
+
 print(format(cmds[0], cmds[1]))    
 
