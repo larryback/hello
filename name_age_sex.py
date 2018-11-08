@@ -1,5 +1,6 @@
-cmd = input("Input(usage: 이름, 나이, 성별")>> ")
+cmd = input("Input(usage: 이름, 나이, 성별)>> ")
 print(cmd)
+cmds = cmd.split(",")
 
 # 1. 값이 존재하는 여부 체크 
 if cmd == "":
@@ -17,6 +18,6 @@ if  len(cmds) != 3:
     exit()
 
 outmsg = "당신의 이름 {}, 나이는 {}, 성별은 {} 입니다"
-cmds = cdm.split(",")
-print(outsmg.format(cmds[0], cmds[1], cmds[2]))    
+
+print(outmsg.format(cmds[0], cmds[1], cmds[2]))    
 
