@@ -18,7 +18,7 @@ b = int(cmd[2])
 op = cmds[1]
 
 r = 0
-for r in range(4)
+
 if op == '+':
     r = plus(a, b)
 elif op == '-':
