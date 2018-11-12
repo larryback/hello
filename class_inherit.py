@@ -16,7 +16,7 @@ class Puppy(Dog):
 	def __init__(self):
 		self.name = "Puppy"
 		print("Puppy was Born")
-def wag(self):
+	def wag(self):
 		print("Puppy's wag tail")
       
 d = Dog('puddle')  
