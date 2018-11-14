@@ -1,10 +1,10 @@
 import sys, os
 import datetime
 
-sa = sys.argv # 0: 실행파일 1: 메시지부분
+sa = sys.argv
 
 now = datetime.datetime.now()
-default_msg = "{}  강의".format(now.strftime("%Y-%m-%d"))
+default_msg = "{} lecture".format(now.strftime("%Y-%m-%d"))
 
 msg = default_msg
 commit_msg = default_msg
