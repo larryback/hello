@@ -8,7 +8,7 @@ for suit in suits:
     for face in faces:
         cards.append((suit, face))
 
-
+print(cards)
 
 random.shuffle(cards)
 print(list(cards))
