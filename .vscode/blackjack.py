@@ -31,3 +31,15 @@
 # 11. player 의 card 의 수의 합이 21 보다 작거나 같고  그리고 dealer 의 card 의 수의 합보다 크면 이긴다. 
 
 # 12. player 의 card 의 수의 합이 dealer 의 card 의 수의 합보다 작으면 진다.
+
+class Dog:
+    def m1(self):
+        print("m1")
+
+    def m2():
+        print('m2')    
+
+dog = Dog()
+dog.m1()
+ #   dog.m2()
+Dog.m2()        
