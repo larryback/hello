@@ -1,37 +1,144 @@
-   # My Study
+                             # My Study
 
-1. Docker를 활용하여 오라클 Express Edition 을 설치하는 과정을 기술하시오.
+1.번 문항 Docker를 활용하여 오라클 Express Edition 을 설치하는 과정을 기술하시오.
 -----------------------------------------------------------------------------
 
+(1). docker search oracle
+(2). docker pull sath89/oracle –xe -11g
+(3). docker images 또는 docker image ls
+(4). docker run –d – - name ora –p 8080:80880 –p 1521:1521 sath89/oracle
+-xe-11g
+(5). docker  ps
+(6). docker exec –it oracle bash
 
 
 
 
-2. Docker 를 활용하여 MySQL 5.7를 설치하는 과정을 기술하시오. 
+
+2.번문항 Docker 를 활용하여 MySQL 5.7를 설치하는 과정을 기술하시오. 
 -----------------------------------------------------------------------------
 
+   (1). docker search mysql
+   (2). docker pull mysql:5.7
+   (3). docker images
+   (4). docker run –d –p 3306:3306 –e MYSQL – ROOT – PASSWORD = r! – - name mysql5 mysql:5.7 	
+   (5). docker ps
+   (6). docker exec –it mysql5 bash  
+   (7). mysql –u root –p
 
 
 
-3. 오라클과  MySQL에서 데이터베이스(schema)와 사용자(user)를 생성하는 과정을 각각 쓰시오.
+3.번 문항  오라클과  MySQL에서 데이터베이스(schema)와 사용자(user)를 생성하는 과정을 각각 쓰시오.
 (툴 사용가능)
 -------------------------------------------------------------------------------------
 
+접속하기 
+(1). docker start mysql5
+(2). docker exec –it mysql5 bash
+(3). mysql –u root –p
+(4). mysql  > show datases;
+
+DB생성하기 
+(1). mysql  > create database dooodb;
+(2). mysql  > show databases;
+(3). mysql  > use dooodb
+(4). mysql  >  show tables;
+
+User 생성
+mysql> create user dooo@'%' identified by 'dooo!';
+
+권한 부여
+mysql> grant all privileges on *.* to 'dooo'@'%';
+
+특정 DB 권한 부여
+mysql> grant all privileges on dooodb.* to 'dooo'@'%';
+
+적용하기
+mysql> flush privileges;
+
+권한 확인
+mysql> show grants for dooo@'%';
+mysql> show grants for dooo;
+
+권한 삭제(취소)
+mysql> revoke all privileges on dooodb.* from dooo@'%';
+
+User 삭제
+mysql> drop user dooo@'%';
 
 
 
 
-4. Docker의 개념과 구성요소 (Image, Container, Docker-Machine등)에 대해 본인이 이해 한 바를
+4.번문항  Docker의 개념과 구성요소 (Image, Container, Docker-Machine등)에 대해 본인이 이해 한 바를
 자유롭게 서술하고, Docker 의 설치 과정과 정상 설치를 확인하는 고정을 기술하시오. 
 -------------------------------------------------------------------------------------
 
+(1). 리눅스 환경을 위해 virtual box 를 설치해야 하는데 [Virtualization Tool Link]:
+http://www.microsoft.com/en-us/download/details.aspx?id = 52에서 가상화 기능이 사용가능한지 먼저 확인합니다.
+
+(2). 가상화 기능이 가능하지 않다면 BIOS에서 자신의 CPU에 맞게 가상화 기능을 사용설정을 해주시면 됩니다. 그리고 나서
+[Docker Toolbox Link]:    https://docs.docker.com/toolbox/toolbox_install_windows/ 에서 DockerToolBox를 다운받습니다. 
+
+
+(3). 다운받은 DockerToolBox를 실행해서 virtual box 와 git 도 같이 설치합니다. (git이 본체에 없는 경우)
+
+(4). 설치 후에 Docker Quickstart Terminal 바로 가기가 바탕화면에 설치됩니다. 아이콘을 더블 클릭해서 실행을 합니다. 
+
+(5). 고래등에 컨터이너가 실린 그림이 나오면 설치 완료됨. 
+
+(6). docker –version을 쓰면 도커의 버전을 확인할 수 있다. 
+
+(7). docker info를 쓰면 도커의 상세버전을 확인, 네트워크의 상태, 자원이 어떻게 할당 되어 있는지 확인할 수 있다. 
+
+(8). docker –help를 쓰면 docker 의 명령어들을 확인할 수 있다. 
+
+(9). docker run Hello-world를 쓰면 성공적으로 개발환경이 구축했는지 확인 할 수 있다. 도커허브에서 Hello-world 이미지를 다운로드
+받아서 컨테이너로 구동시킨다. 
+
+(10). docker images 를 쓰면 현재 도커에 설치되어 있는 이미지 파일을 확인 할 수 있고 Hello-world 의 이미지가 최근에 설치된 것이 확인됨. 
+
+(11). Docker  ps –a를 쓰면 여태까지 모두 설치되었던 도커 컨테이너를 출력해 
+주는데, Hello-world의 이미지가 최근에 설치된 것이 확인됩니다. 
+(12). Docker ps –a 를 쓰면 여태까지 모두 설치되었던 도커 컨테이너를 출력해 주는데 , Hello-world의 이미지가 종료된 것을 알려준다. 
+
+(13). Docker ps 를 쓰면 현재 실행 중인 컨테이너만 출력한다.
+
+(14). docker-machine ls 를 쓰면 docker-machine의 리스트에 default라는 이름으로 virtual box 가 설치된 것을 확인할 수 있는데 이로써
+설치가 완료된 것이다. 
+
+
+2. 도커의 개념과 구성요소(image, container, docker-machine 등)에 대해 본인이 이해한 바를 자유롭게 기술하시오. 
+
+(1). 도커의 개념:
+도커(docker)라는 단어가 뜻하는 것처럼 container선이 정박할 수 있는 물리적 시설에 비유될 수 있다. 
+
+(2). Container는 안에 물건을 담을 수 있는데 화물대신 소프트웨어가 담긴다. 
+
+(3). Container를 도커에 정박시킨 후에 구성이 완료되면 사진을 찍어서 image로 남겨 놓는데 이렇게 하면 container 가 소실 되어도 복구가 가능하다.
+반복되는 설치작업도 쉬워진다. 
+
+(4). Docker-machin의 일종인 virtual box 는 운영체제인 Linux 를 지원하기 위한 장비이다. 
 
 
 
-5.1) Linux(Ubuntu) Docker Container 를 구동하기 위한 절차를 쓰고, 설치된 Ubuntu Container에 
+
+5.번 문항  1) Linux(Ubuntu) Docker Container 를 구동하기 위한 절차를 쓰고, 설치된 Ubuntu Container에 
 2) Telenet daemon 구동하기, 3) 한글 사용 설정하기, 4) Git 사용 설정하기 등의 작업 절차를 기술
 하시오.
 ------------------------------------------------------------------------------------------------------
 
+Ubuntu docker container를 구동하기 위한 절차
+
+(1). docker container run Ubuntu:latest  /bin/echo ‘Hello world’
+(2). docker ps –a 
+(3). docker container ps –a 
+(4). docker system df
+(5). docker image ls
+(6). docker pull nginx
+(7), docker image ls
+(8). docker container run – name webserver –d –p 80:80 nginx 
+(9). docker container ps –a
+(10). docker container [top | stats] webserver
+(11). docker container rm webserver
 
 
