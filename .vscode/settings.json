@@ -1,9 +1,5 @@
 {
     "editor.tabCompletion": "on",
-<<<<<<< HEAD
-    "python.pythonPath": "C:\\Python\\python.exe",
-=======
-    "python.pythonPath": "C:\\Users\\60318\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
->>>>>>> 8712b4ae7b502503e14f774df90568c0ab226403
+    "python.pythonPath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
     "python.linting.pylintEnabled": true
 }
