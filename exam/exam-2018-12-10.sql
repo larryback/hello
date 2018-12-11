@@ -1,6 +1,6 @@
 # 문항1. 학생, 과목, 교수, 수강내역 테이블의 관계를 고려하여 생성하는 DDL을 작성하시오 (5점)
 create table Student (
-	id int unsigned not null auto-increment comment '학번',
+	id int unsigned not null auto_increment comment '학번',
     name varchar(32) not null comment '학생명'
     addr varchar(30),
     birth date,
@@ -13,7 +13,7 @@ create table Student (
 desc Student;
 
 create table Subjects(
-	id int(10) unsigned not null auto-increment,
+	id int(10) unsigned not null auto_increment,
     name varchar(31) collate utf8_bin not null default 0,
     prof int(10) unsigned default null,
     primary key (id),
@@ -24,7 +24,7 @@ create table Subjects(
 desc subjects;
 
 create table Prof(
-		id int(10) unsigned not null auto-increment,
+		id int(10) unsigned not null auto_increment,
         name varchar(31) collate utf8_bin not null default 0,
         likecnt int(11) default 0,
         primary key (id)
@@ -33,7 +33,7 @@ create table Prof(
 desc Prof;
 
 create table Enroll(
-	id int(10) unsigned not null auto-increment,
+	id int(10) unsigned not null auto_increment,
     student int(10) unsigned default null,
     subject int(10) unsigned default null,
     primary key(id),
@@ -102,8 +102,12 @@ insert into Classroom (classroom) values('101 강의실');
 
 alter table Subjects add column classroom int(10) unsigned not null default 0 ;
 
-select Classroom.*, Subject.classroom from Classroom
-inner join Subjects on Classroom.id = Subjects.classroom;
+SELECT 
+    Classroom.*, Subject.classroom
+FROM
+    Classroom
+        INNER JOIN
+    Subjects ON Classroom.id = Subjects.classroom;
 
 # 문항6. 1) 수강하는 과목별 중간고사, 기말고사 성적을 저장하는 테이블(Grade)을 생성하고  2) 수강테이블 기준으로 샘플 데이터를 
 # 중간(midterm), 기말(finalterm) 성적(100점만점)으로 구성하고, 3) 과목별 수강생을 과목/성적 순으로 아래와 같은 형식으로 출력
@@ -187,6 +191,6 @@ select * from grade;
 select * from Subjectname;
 select * from Enroll;
 
-  
+Message Input
 
-    
+Message 김영모(Youngmo Kim)
