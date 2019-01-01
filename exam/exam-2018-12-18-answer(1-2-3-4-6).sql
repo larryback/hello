@@ -3,16 +3,18 @@
     
     
  #문항 1번. 학번, 학생명, 수강과목수, 전과목 평균점수 컬럼(총 4개 칼럼)을 갖는 View를 작성하시오.   
+drop view if exists v_students;
 
-create view v_enroll_subject_student AS
+create view v_students AS
 
-select s.id '학번', s.name '학생명', sum(j.name) '수강과목수', (g.midterm+finalterm)/2 '전과목평균점수'
+	select e.student '학번', max(s.name) '학생명', count(*) '수강과목수',
+			round(avg(g.midterm+finalterm)/2) '전과목평균점수'
      
- from Enroll e inner join Student s on e.student = s.id
-               inner join Subject j on e.subject = j.id
-                inner join Grade g on e.id = g.enroll;
+		from Enroll e inner join Student s on e.student = s.id
+                      inner join Grade g on e.id = g.enroll
+        group by e.student;              
                 
-             
+select * from v_students;             
 
 select * from v_inform1;
 select * from Subject;
@@ -25,46 +27,50 @@ select * from Prof;
 select * from Enroll;
 # 문항 2번. 학번을 주면 해당 학생의 전과목 평균을 반환하는 Stored Function을 작성하시오.
 #(호출 예. f_student_avg(학번))
+drop function if exists f_student_avg;
 
 delimiter //
-Create function f_student_avg(_student_id int(100))
+Create function f_student_avg(_stu int(100) unsigned)
  Returns int(100)
  
 Begin
-	return (select s.id, (midterm + finalterm)/2 '전과목평균'
-from Student s inner join Enroll e on  s.id = e.student 
-               inner join Grade g on g.enroll = e.id  
-               where s.id = _student_id );
-            
+	return (select avg(g.midterm + g.finalterm)/2 '전과목평균'
+	from Grade g inner join Enroll e on g.enroll = e.id
+    where e.student = _stu)  ; 
 End //
 Delimiter ;
 
-select f_student_avg(_student_id);
+select name, id, f_student_avg(id) from Student limit 10;
  
  
 #문항 3번. 클럽(Club)을 하나 추가하면 클럽회원(ClubMember)으로 임의의 한 학생(Student)을
 #회장으로 자동 등록하는 Trigger 를 작성하시오. 
+drop trigger if exists tr_club_member_rand1;
 
 Delimiter //
 
-  create trigger tr_club_clubmember
-  
-	Before insert
+ create trigger tr_club_member_rand1
+	after insert on Club for each row
+     
+Begin
+	
     
-    on Club for each row
-    
-  Begin
-  
-	insert into Clubmember values (New.name)
-    set New.name = ( select id from Student s 
-    inner join ClubMember cm on s.id = cm.student
-    where cm.level is not 1 and 2
-    order by rand() limit 1);
+		insert into ClubMember(club, student, level)
+		select NEW.id, id, 2
+        from Student
+        where id not in (select student from ClubMember where level in (1,2))
+        order by rand() limit 1;
+        
     
 End //
   
 Delimiter ;  
 
+insert into Club(name) values('1부');
+
+select * from Club order by id desc;
+
+select * from ClubMember where club = (select max(id) from Club);
 
 #문항 4번. 지난 학기 데이터 (수강학생수, 성적등)를 기준으로 인기교수 (강좌) Top 3
 #을 추천하는 Stored Procedure 를 작성하시오. 단, 데이타의 가중치는 자유롭게 부여 하시오.
