@@ -9,7 +9,7 @@ soup = BeautifulSoup(res, "html.parser")
 # ul 태그 바로 아래에 있는
 # li 태그 아래에 있는
 # a 태그를 모두 선택합니다.
-a_list = soup.select("#mw-content-text > ul > li a")
+a_list = soup.select("#mw-content-text > div > ul > li a")
 for a in a_list:
     name = a.string
     print("-", name)

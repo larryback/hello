@@ -1,8 +1,8 @@
 import pro_mig_util as mu
 
 conn_oracle_hr = mu.get_oracle_conn("hr","hrpw", "localhost:1521/xe")
-conn_mysql_betterdb = mu.get_mysql_conn("betterdb")
-conn_creat_tables = mu.get_mysql_conn("betterdb")
+conn_mysql_betterdb = mu.get_mysql_conn("dadb")
+conn_creat_tables = mu.get_mysql_conn("dadb")
 
 
 with conn_creat_tables:
