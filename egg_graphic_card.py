@@ -20,21 +20,38 @@ containers = page_soup.findAll("div", {"class":"item-container"})
 filename = "products.csv"
 f = open(filename, "w")
 
+
 headers = "brand, product_name, shipping\n"
+
 f.write(headers)
 
 for container in containers:
-    brand = container.div.div.div.div.span.img["title"]
+    try:
+
+        brand = container.div.div.a.img["title"]
+
+    except AttributeError:
+        pass    
 
     title_container = container.findAll("a", {"class":"item-title"}) 
     product_name = title_container[0].text
 
     shipping_container = container.findAll("li", {"class":"price-ship"})
     shipping = shipping_container[0].text.strip()  
-    print("brand: " + brand)
+    
+    try:
+
+        print("brand: " + brand)
+
+    except NameError:
+        pass    
     print("product_name " + product_name)
     print("shipping " + shipping)
 
-    f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
+    try:
+
+        f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
+    except NameError:
+        pass    
 
 f.close()    
