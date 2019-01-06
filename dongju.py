@@ -18,3 +18,5 @@ a_list = soup.select("#mw-content-text > div > ul > li > b > a")
 for a in a_list:
     name = a.string
     print("_", name)
+
+  
