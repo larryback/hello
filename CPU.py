@@ -1,7 +1,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
-my_url = "https://www.newegg.com/Video-Cards-Video-Devices/Category/ID-38?Tpk=graphics%20card"
+my_url = "https://www.amazon.com/best-sellers-books-Amazon/zgbs/books"
 
 # opeining up connection, grabbing the page
 
@@ -15,7 +15,7 @@ page_soup = soup(page_html, "html.parser")
 
 # grabs each product
 
-containers = page_soup.findAll("div", {"class":"item-container"})
+containers = page_soup.findAll("div", {"class":"a-section a-spacing-none aok-relative"})
 
 filename = "products.csv"
 f = open(filename, "w")
@@ -28,7 +28,7 @@ f.write(headers)
 for container in containers:
     #try:
 
-    brand = container.div.div.img["alt"]
+    containers = container.div.div.a.img["alt"]
         
     #except AttributeError:
         #pass    
