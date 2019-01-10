@@ -1,7 +1,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
-my_url = "https://www.newegg.com/Video-Cards-Video-Devices/Category/ID-38?Tpk=graphics%20card"
+my_url = "https://play.google.com/store/apps/category/GAME/collection/topselling_paid?hl=ko"
 
 # opeining up connection, grabbing the page
 
@@ -15,10 +15,16 @@ page_soup = soup(page_html, "html.parser")
 
 # grabs each product
 
-containers = page_soup.findAll("div", {"class":"item-container"})
+#containers = page_soup.findAll("div", {"class":"detail"})
+containers = page_soup.findAll("div", {"class":"card-content id-track-click id-track-impression"})
+#containers = page_soup.findAll("ul", {"id":"pro_list_type1"})
+print(containers)
+exit()
 
 print("----------------------------------------------------------------")
+
 print(container.div.div.div.div.img["alt"])
+
 
 filename = "products.csv"
 f = open(filename, "w")
@@ -31,7 +37,7 @@ f.write(headers)
 for container in containers:
     #try:
 
-    brand = container.div.div.img["alt"]
+    containers = container.div.div.a.img["alt"]
         
     #except AttributeError:
         #pass    
