@@ -1,9 +1,13 @@
- #!/bin/bash
+#!/bin/bash
 
-echo "\$0=$0"
-echo "\$1=$1"
-echo "\$2=$2"
-echo "\$#=$#"
+if [ $# -eq 0 ]; then
+    echo "Input the filename, please.."
+    echo "usage) ./s5.sh <to-change-file>"
+    exit 0
+fi
 
+DATE=`date +%Y%m%d`
+FN="${DATE}.txt"
+#echo "mv $1 $FN"
 
-
+mv $1 $FN

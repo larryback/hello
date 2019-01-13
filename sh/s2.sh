@@ -1,7 +1,8 @@
 #!/bin/bash
 
-for i in {1..10}; do echo $i; done
-
-
-    
-  
+for i in `ls *.txt`
+do
+    echo " -------------------- $i"
+    cat $i
+    echo "========================================="
+done

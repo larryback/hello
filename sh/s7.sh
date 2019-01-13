@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]; then
-    echo "Input the filename, please.."
-    echo "usage) ./s4.sh <file>"
-    exit 0
-fi
-
-cat $1
-
+for i in {2..9}
+do
+    for j in {1..9}
+    do
+        echo "$i * $j = $(( $i * $j ))"
+    done
+    echo "--------------------------------"
+done

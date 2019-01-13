@@ -21,3 +21,4 @@ if len(sa) < 2:
 with open(sa[1], "r", encoding='utf-8') as file:
     for line in file:
         print(line.strip())
+

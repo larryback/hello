@@ -25,4 +25,3 @@ def write_file3(l):
 
 lst = ['김삼수\t여\t33', '김사수\t남\t41', '김오수\t여\t77']
 write_file3(lst)
-    

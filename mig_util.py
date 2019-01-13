@@ -1,17 +1,18 @@
 import pymysql
 import cx_Oracle
 
-def get_oracle_conn(usr, usrpw, localhost):
-        return cx_Oracle.connect(usr, usrpw, localhost)
-
+def get_oracle_conn():
+    return cx_Oracle.connect("hr", "hrpw", "localhost:1521/xe")
+    
 def get_mysql_conn(db):
     return pymysql.connect(
         host='localhost',
         user='dooo',
-        password='1234',
+        password='dooo!',
         port=3306,
         db=db,
         charset='utf8')
+
 
 def get_count(conn, tbl, where = ''):
     cur = conn.cursor()

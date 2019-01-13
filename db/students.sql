@@ -6,6 +6,6 @@ name text not null default 'aaa',
 mobile text null);
 INSERT INTO Student VALUES(1,'홍길동','010-2323-4545');
 INSERT INTO Student VALUES(2,'홍길순',NULL);
-DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('Student',2);   
+DELETE FROM sqlite_sequence where name = 'Student';
+INSERT INTO sqlite_sequence VALUES('Student',2);
 COMMIT;
