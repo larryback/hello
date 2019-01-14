@@ -1,25 +1,37 @@
 from selenium import webdriver
-from time import sleep
+import time 
+
+
 
 chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
 driver = webdriver.Chrome(chrome_path)
 driver.get("http://mobile.kyobobook.co.kr/")
+
 
 driver.find_element_by_xpath("""//*[@id="BannerappDown"]/span[1]/img""").click()
 
 # 베스트 
 driver.find_element_by_xpath("""//*[@id="content"]/div[1]/ul/li[3]/button/span""").click()
 
-sleep(6)
+time.sleep(6)
 #driver.find_element_by_xpath("""//*[@id="sss0"]/li[23]/a""").click()
 posts = driver.find_elements_by_class_name("tit")
 for post in posts:
 	print(post.text)
 #종합주간
 driver.find_element_by_xpath("""//*[@id="mainTab_3"]/div[1]/ul/li[2]/a/strong""").click()
-sleep(6)
+time.sleep(6)
 
-driver.execute_script("window.scrollTo(0, 1000)") 
+
+
+
+
+
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+
+
+
 
 driver.find_element_by_xpath("""//*[@id="bestDaily"]/div[2]/div[2]/button/span""").click()
 
@@ -34,7 +46,7 @@ driver.find_element_by_xpath("""//*[@id="bestDaily"]/div[3]/div[3]/button/span""
 
 
 
-sleep(6)
+time.sleep(10)
 posts = driver.find_elements_by_class_name("tit")
 for post in posts:
 	print(post.text)
