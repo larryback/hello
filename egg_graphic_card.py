@@ -17,6 +17,9 @@ page_soup = soup(page_html, "html.parser")
 
 containers = page_soup.findAll("div", {"class":"item-container"})
 
+print("----------------------------------------------------------------")
+print(container.div.div.div.div.img["alt"])
+
 filename = "products.csv"
 f = open(filename, "w")
 
