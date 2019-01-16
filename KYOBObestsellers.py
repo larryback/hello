@@ -1,60 +1,146 @@
-from urllib.request import urlopen as uReq
-from bs4 import BeautifulSoup as soup
+from bs4 import BeautifulSoup
+import urllib.request as req
+import time
+url = "http://www.kyobobook.co.kr/bestSellerNew/bestseller.laf?range=1&kind=0&orderClick=DAA&mallGb=KOR&linkClass=A"
 
-my_url = "http://www.kyobobook.co.kr/bestSellerNew/bestseller.laf?range=1&kind=2&orderClick=DAB"
-
-# opeining up connection, grabbing the page
-
-uClient = uReq(my_url)
-page_html = uClient.read()
-uClient.close()
-
-# html parsing
-
-page_soup = soup(page_html, "html.parser")
-
-# grabs each product
-
-#containers = page_soup.findAll("div", {"class":"detail"})
-#containers = page_soup.findAll("div", {"class":"detail"}, "div", {"class":"subtitle"})
-containers = page_soup.findAll("ul", {"id":"pro_list_type1"})
-print(containers)
-exit()
-filename = "products.csv"
-f = open(filename, "w")
+res = req.urlopen(url)
+#print(res)
 
 
-headers = "brand, product_name, shipping\n"
 
-f.write(headers)
+soup = BeautifulSoup(res, "html.parser")
 
-for container in containers:
-    #try:
 
-    containers = container.div.div.a.img["alt"]
-        
-    #except AttributeError:
-        #pass    
-    
-    title_container = container.findAll("a", {"class":"item-title"}) 
-    product_name = title_container[0].text
 
-    shipping_container = container.findAll("li", {"class":"price-ship"})
-    shipping = shipping_container[0].text.strip()  
-    
-    try:
+#print(soup)
 
-        print("brand: " + brand)
+a_list = soup.select("#maincontents > ul > li > div > div > a > strong")
 
-    except NameError:
-        pass    
-    print("product_name " + product_name)
-    print("shipping " + shipping)
+for a in a_list:
+    title = a.string
+    print(title)
 
-    try:
 
-        f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
-    except NameError:
-        pass    
+b_list = soup.select("#maincontents > ul > li > div > div.author ")
 
-f.close()    
+for b in b_list:
+    author = b.string
+    print(author) 
+
+
+c_list = soup.select("#maincontents > ul > li > div > div.line ")
+
+for c in c_list:
+    publisher = c.string
+    print(publisher) 
+
+chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
+driver = webdriver.Chrome("C:\chromedriver_win32 (1)/chromedriver.exe")
+driver.get("https://www.melon.com/chart/index.htm")
+time.sleep(3)
+
+driver.find_element_by_xpath("""//*[@id="main_contents"]/div[5]/div[1]/ul/li[2]/a""").click()
+
+a_list = soup.select("#maincontents > ul > li > div > div > a > strong")
+
+for a in a_list:
+    title = a.string
+    print(title)
+
+
+b_list = soup.select("#maincontents > ul > li > div > div.author ")
+
+for b in b_list:
+    author = b.string
+    print(author) 
+
+
+c_list = soup.select("#maincontents > ul > li > div > div.line ")
+
+for c in c_list:
+    publisher = c.string
+    print(publisher) 
+
+chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
+driver = webdriver.Chrome("C:\chromedriver_win32 (1)/chromedriver.exe")
+driver.get("https://www.melon.com/chart/index.htm")
+time.sleep(3)
+
+driver.find_element_by_xpath("""//*[@id="main_contents"]/div[5]/div[1]/ul/li[2]/a""").click()
+
+
+
+a_list = soup.select("#maincontents > ul > li > div > div > a > strong")
+
+for a in a_list:
+    title = a.string
+    print(title)
+
+
+b_list = soup.select("#maincontents > ul > li > div > div.author ")
+
+for b in b_list:
+    author = b.string
+    print(author) 
+
+
+c_list = soup.select("#maincontents > ul > li > div > div.line ")
+
+for c in c_list:
+    publisher = c.string
+    print(publisher) 
+
+
+chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
+driver = webdriver.Chrome("C:\chromedriver_win32 (1)/chromedriver.exe")
+driver.get("https://www.melon.com/chart/index.htm")
+time.sleep(3)
+
+driver.find_element_by_xpath("""//*[@id="main_contents"]/div[5]/div[1]/ul/li[4]/a""").click()
+
+a_list = soup.select("#maincontents > ul > li > div > div > a > strong")
+
+for a in a_list:
+    title = a.string
+    print(title)
+
+
+b_list = soup.select("#maincontents > ul > li > div > div.author ")
+
+for b in b_list:
+    author = b.string
+    print(author) 
+
+
+c_list = soup.select("#maincontents > ul > li > div > div.line ")
+
+for c in c_list:
+    publisher = c.string
+    print(publisher) 
+
+chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
+driver = webdriver.Chrome("C:\chromedriver_win32 (1)/chromedriver.exe")
+driver.get("https://www.melon.com/chart/index.htm")
+time.sleep(3)
+
+driver.find_element_by_xpath("""//*[@id="main_contents"]/div[5]/div[1]/ul/li[5]/a""").click()
+
+a_list = soup.select("#maincontents > ul > li > div > div > a > strong")
+
+for a in a_list:
+    title = a.string
+    print(title)
+
+
+b_list = soup.select("#maincontents > ul > li > div > div.author ")
+
+for b in b_list:
+    author = b.string
+    print(author) 
+
+
+c_list = soup.select("#maincontents > ul > li > div > div.line ")
+
+for c in c_list:
+    publisher = c.string
+    print(publisher) 

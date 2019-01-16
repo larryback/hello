@@ -1,15 +1,23 @@
 from bs4 import BeautifulSoup
 import urllib.request as req
-
-
+import time
+import requests
 
 
 url = "https://www.melon.com/chart/index.htm"
 
-res = req.urlretrieve(url)
+heads = {
+    "Referer": "https: // www.melon.com/chart/index.htm",
+    "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+}
+
+res = requests.get(url, headers=heads)
+html = res.text
+
+#res = req.urlopen(url)
 #print(res)
 
-soup = BeautifulSoup(res, "html.parser")
+soup = BeautifulSoup(html, "html.parser")
 
 #print(soup)
 
@@ -37,9 +45,9 @@ from time import sleep
 
 
 chrome_path = r"C:\chromedriver_win32 (1)/chromedriver.exe"
-driver = webdriver.Chrome(C:\chromedriver_win32 (1)/chromedriver.exe)
+driver = webdriver.Chrome("C:\chromedriver_win32 (1)/chromedriver.exe")
 driver.get("https://www.melon.com/chart/index.htm")
-sleep(3)
+time.sleep(3)
 
 driver.find_element_by_xpath("""//*[@id="tb_list"]/div/span/a""").click()
 
