@@ -20,15 +20,6 @@ containers = page_soup.findAll("div", {"class":"card-content id-track-click id-t
 #containers = page_soup.findAll("ul", {"id":"pro_list_type1"})
 print(containers)
 exit()
-<<<<<<< HEAD
-=======
-
-print("----------------------------------------------------------------")
-
-print(container.div.div.div.div.img["alt"])
-
-
->>>>>>> a85fcedb2265580275bc63a95ab34d29e3ac7112
 filename = "products.csv"
 f = open(filename, "w")
 
