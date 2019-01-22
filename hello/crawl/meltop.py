@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import json
 import csv, codecs
+import re
 
 url = "https://www.melon.com/chart/index.htm"
 
@@ -19,6 +20,14 @@ trs = soup.select('div#tb_list table tbody tr[data-song-no]')
 print(len(trs))
 # print(trs[0])
 
+pattern = re.compile("\'(.*)\'")
+# pattern = re.compile('(\d)')
+def getNum(str):
+    return re.findall(pattern, str)[0]
+
+
+   
+
 dic = {}   # { song_no: {title:'...', singer: '...' } }
 
 for tr in trs:
@@ -28,7 +37,15 @@ for tr in trs:
     # singers = tr.select('div.ellipsis.rank02 a')
     singers = tr.select('div.ellipsis.rank02 span a')
     singer = ",".join([a.text for a in singers])
-    dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
+    album = getNum(tr.select_one('div.ellipsis.rank03 a').get('href'))
+    dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer, 'album':album}
+
+    detail_URl = 'https://www.melon.com/album/detail.htm?albumId='+ str(album)
+    #print(detail_URl)
+    
+
+#exit()
+print(dic)
 
 likeUrl = "https://www.melon.com/commonlike/getSongLike.json"
 likeParams = {
@@ -70,11 +87,17 @@ pprint(leastLike)
 # # aaa,bbb,"ccc,cc"
 # reader = csv.reader(fp, delimiter=',', quotechar='"')
 
-with codecs.open('./crawl/melon_top_100.csv', 'w', 'utf-8') as ff:
+
+
+
+
+
+
+with codecs.open('./crawl/melon_top_100.csv', 'w', 'ms949') as ff:
 
     writer = csv.writer(ff, delimiter=',', quotechar='"')
 
-    writer.writerow(['랭킹', '제목', '가수', '좋아요', '좋아요차이'])
+    writer.writerow(['랭킹', '제목', '가수', '앨범', '좋아요', '좋아요차이'])
     #writer.writerow
 
 
@@ -86,6 +109,7 @@ with codecs.open('./crawl/melon_top_100.csv', 'w', 'utf-8') as ff:
         rank = song['ranking']
         title = song['title']
         singer = song['singer']
+        album = song['album']
         likecnt = song['likecnt']
         likeDiff = likecnt - leastLike
         likesum = likesum + likecnt

@@ -71,4 +71,4 @@ chart.series.append(series)
 sheet3.add_chart(chart, "B20")
 
 
-book.save('./data/meltop100.xlsx')
+book.save('./meltop100.xlsx')

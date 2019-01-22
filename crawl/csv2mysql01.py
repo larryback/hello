@@ -5,8 +5,8 @@ import codecs
 def get_conn(db):
     return pymysql.connect(
         host='localhost',
-        user='dooo',
-        password='1234',
+        user='root',
+        password='root1!',
         port=3306,
         db=db,
         charset='utf8')
