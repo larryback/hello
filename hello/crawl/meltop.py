@@ -37,12 +37,36 @@ for tr in trs:
     # singers = tr.select('div.ellipsis.rank02 a')
     singers = tr.select('div.ellipsis.rank02 span a')
     singer = ",".join([a.text for a in singers])
-    album = getNum(tr.select_one('div.ellipsis.rank03 a').get('href'))
-    dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer, 'album':album}
+    #album = getNum(tr.select_one('div.ellipsis.rank03 a').get('href'))
+    dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
 
-    detail_URl = 'https://www.melon.com/album/detail.htm?albumId='+ str(album)
-    #print(detail_URl)
-    
+        # detail_URL = 'https://www.melon.com/album/detail.htm?albumId='+ str(album)
+        # #print(detail_URl)
+        # heads = {
+        # "Referer": "https: // www.melon.com/chart/index.htm",
+        # "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+        # }
+        # res = requests.get(detail_URL, headers=heads)
+        # html = res.text
+        # soup = BeautifulSoup(html, "html.parser")
+        # trs = soup.select('#conts > div.section_info > div')
+        # print("===================================================")
+        # #print(trs)
+    for tr in trs:
+        albums = tr.select_one('div.song_name').text
+        abm = albums[4:]
+        album = abm.strip()
+        print(album)
+        genre = tr.select_one('div.meta dl dd:nth-of-type(2)').text
+        #print(genre)
+
+        rating = tr.select_one('span.progress span').text
+        #print(rating)
+      
+
+exit()
+
+
 
 #exit()
 print(dic)
@@ -93,7 +117,7 @@ pprint(leastLike)
 
 
 
-with codecs.open('./crawl/melon_top_100.csv', 'w', 'ms949') as ff:
+with codecs.open('./crawl/melon_top_100_01.csv', 'w', 'ms949') as ff:
 
     writer = csv.writer(ff, delimiter=',', quotechar='"')
 

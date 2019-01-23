@@ -5,15 +5,15 @@ import codecs
 
 def get_conn(db):
     return pymysql.connect(
-        host='localhost',
+        host='34.85.46.200',
         user='root',
         password='root1!',
         port=3306,
         db=db,
         charset='utf8')
 
-sql_truncate = "truncate table Meltop"
-sql_insert = "insert into Meltop(rank, title, singer, likecnt) values(%s,%s,%s,%s)"
+sql_truncate = "truncate table Song"
+sql_insert = "insert into Song(rank, title, singer, likecnt) values(%s,%s,%s,%s)"
 
 csvFile = codecs.open("./melon_top_100.csv", "r", "ms949")
 reader = csv.reader(csvFile, delimiter=',', quotechar='"')
@@ -27,7 +27,7 @@ print("11>>", lst[1])
 del lst[0]
 
 
-conn = get_conn('dadb')
+conn = get_conn('melondb')
 with conn:
     cur = conn.cursor()
     cur.execute(sql_truncate)
