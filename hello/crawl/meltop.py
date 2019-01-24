@@ -5,20 +5,26 @@ import json
 import csv, codecs
 import re
 
-url = "https://www.melon.com/chart/index.htm"
+#url = "https://www.melon.com/chart/index.htm"
+url = "http://vlg.berryservice.net:8099/melon/list"
 
-heads = {
-    "Referer": "https: // www.melon.com/chart/index.htm",
-    "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-}
+    # heads = {
+    #     "Referer": "https: // www.melon.com/chart/index.htm",
+    #     "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+    # }
 
-res = requests.get(url, headers=heads)
+#res = requests.get(url, headers=heads)
+
+res = requests.get(url)
 html = res.text
 
 soup = BeautifulSoup(html, "html.parser")
 trs = soup.select('div#tb_list table tbody tr[data-song-no]')
 print(len(trs))
-# print(trs[0])
+#print(trs[0])
+
+
+#exit()
 
 pattern = re.compile("\'(.*)\'")
 # pattern = re.compile('(\d)')
@@ -37,21 +43,26 @@ for tr in trs:
     # singers = tr.select('div.ellipsis.rank02 a')
     singers = tr.select('div.ellipsis.rank02 span a')
     singer = ",".join([a.text for a in singers])
-    #album = getNum(tr.select_one('div.ellipsis.rank03 a').get('href'))
+    album = getNum(tr.select_one('div.ellipsis.rank03 a').get('href'))
+    print("==========================================================================")
+    print(album)
+    exit()
     dic[song_no] = {'ranking': int(ranking), 'title':title, 'singer': singer}
 
-        # detail_URL = 'https://www.melon.com/album/detail.htm?albumId='+ str(album)
-        # #print(detail_URl)
-        # heads = {
-        # "Referer": "https: // www.melon.com/chart/index.htm",
-        # "User-Agent": "Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-        # }
-        # res = requests.get(detail_URL, headers=heads)
-        # html = res.text
-        # soup = BeautifulSoup(html, "html.parser")
-        # trs = soup.select('#conts > div.section_info > div')
-        # print("===================================================")
-        # #print(trs)
+    detail_URL = 'http://vlg.berryservice.net:8099/melon/detail?albumId='+ str(album)
+    print("==========================================================================")
+    print(detail_URL)
+
+    exit()
+    
+    res = requests.get(detail_URL)
+    html = res.text
+    soup = BeautifulSoup(html, "html.parser")
+    trs = soup.select('#conts > div.section_info > div')
+    print("===================================================")
+    print(trs)
+
+
     for tr in trs:
         albums = tr.select_one('div.song_name').text
         abm = albums[4:]
