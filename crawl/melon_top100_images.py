@@ -7,10 +7,17 @@ import urllib.request
 import urls
 import urllib.parse as parse
 import os.path as path
+<<<<<<< HEAD
 
 
 
 url = "https://www.melon.com/chart/index.htm#params%5Bidx%5D=1"
+=======
+import time
+
+
+url = "https://www.melon.com/chart/index.htm"
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
 
 heads = {
     "Referer": "https: // www.melon.com/chart/index.htm",
@@ -31,17 +38,29 @@ if len(imgs) < 1:
     exit()
 
 print("--------------------------------------")
+<<<<<<< HEAD
 for img in imgs:
     src = img.get('src')
     print("img>>", src)
     with open("./images/" + urls.getFilename(src), "wb") as file:
+=======
+for i, img in enumerate(imgs):
+    src = img.get('src')
+    print("img>>", src)
+    # with open("./images/" + urls.getFilename(src), "wb") as file:
+    with open("./images/" + str(i + 1) + '.jpg', "wb") as file:
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
         file.write(requests.get(src).content)
 
 
 
 url = "https://www.melon.com/chart/index.htm#params%5Bidx%5D=51"
 
+<<<<<<< HEAD
 sel = "#lst50 > td > div > a > img"
+=======
+sel = "#lst100 > td > div > a > img"
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
 
 imgs = soup.select(sel)
 # print(imgs, len(imgs))
@@ -49,11 +68,22 @@ imgs = soup.select(sel)
 if len(imgs) < 1:
     exit()
 
+<<<<<<< HEAD
 print("--------------------------------------")
 for img in imgs:
     src = img.get('src')
     print("img>>", src)
     with open("./images/" + urls.getFilename(src), "wb") as file:
+=======
+
+print("--------------------------------------")
+for i, img in enumerate(imgs):
+    i=50
+    src = img.get('src')
+    print("img>>", src)
+    # with open("./images/" + urls.getFilename(src), "wb") as file:
+    with open("./images/" + str(i + 1) + '.jpg', "wb") as file:
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
         file.write(requests.get(src).content)
 
 
@@ -84,7 +114,10 @@ for img in imgs:
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
     # trs = soup.select('div#tb_list table tbody tr[data-song-no]')
     # print(len(trs))
     # # print(trs[0])

@@ -1,6 +1,10 @@
 import openpyxl
 # insert image
+<<<<<<< HEAD
 imgFile = './images/aaa.png'
+=======
+imgFile = './crawl/images/aaa.png'
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
 img = openpyxl.drawing.image.Image(imgFile)
 sheet1.add_image(img, 'B5')
 # resize image

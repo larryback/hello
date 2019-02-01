@@ -41,6 +41,9 @@ html = requests.get(url, params=params, headers=headers).text
 jsonData = json.loads(html)
 items = jsonData['items']
 
+print(items)
+exit()
+
 for item in items:
     print ("title: " , item['title'])
     print ("link: " , item['link'])

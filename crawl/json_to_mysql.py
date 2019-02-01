@@ -58,10 +58,17 @@ for item in items:
 
 def get_conn(db):
     return pymysql.connect(
+<<<<<<< HEAD
         host='127.0.0.1',
         user='dooo',
         password='1234',
         port=3307,
+=======
+        host='localhost',
+        user='dooo',
+        password='1234',
+        port=3306,
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
         db=db,
         charset='utf8')
 

@@ -63,7 +63,11 @@ def get_conn():
     return pymysql.connect(
         host='localhost',
         user='dooo',
+<<<<<<< HEAD
         password='dooo!',
+=======
+        password='1234',
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
         port=3306,
         db='dadb',
         # cursorclass=pymysql.cursors.DictCursor,
@@ -243,3 +247,7 @@ class Melon:
 
         # print(lst)
         self.executeMany(SqlSongArtist, lst)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db

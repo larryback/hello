@@ -216,3 +216,7 @@ class Melon:
 
         # print(lst)
         self.executeMany(SqlSongArtist, lst)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db

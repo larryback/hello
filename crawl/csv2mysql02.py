@@ -5,6 +5,7 @@ import codecs
 
 def get_conn(db):
     return pymysql.connect(
+<<<<<<< HEAD
         host='127.0.0.1',
         user='dooo',
         password='1234',
@@ -14,6 +15,17 @@ def get_conn(db):
 
 sql_truncate = "truncate table Meltop"
 sql_insert = "insert into Meltop(rank, title, singer, likecnt) values(%s,%s,%s,%s)"
+=======
+        host='34.85.46.200',
+        user='root',
+        password='root1!',
+        port=3306,
+        db=db,
+        charset='utf8')
+
+sql_truncate = "truncate table Song"
+sql_insert = "insert into Song(rank, title, singer, likecnt) values(%s,%s,%s,%s)"
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
 
 csvFile = codecs.open("./melon_top_100.csv", "r", "ms949")
 reader = csv.reader(csvFile, delimiter=',', quotechar='"')
@@ -27,7 +39,11 @@ print("11>>", lst[1])
 del lst[0]
 
 
+<<<<<<< HEAD
 conn = get_conn('dooodb')
+=======
+conn = get_conn('melondb')
+>>>>>>> 14b1a64526eeb51aecda34d9ad38c7642b2542db
 with conn:
     cur = conn.cursor()
     cur.execute(sql_truncate)
