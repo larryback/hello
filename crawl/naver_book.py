@@ -20,7 +20,16 @@ result = requests.get(url, params=params, headers=headers).text
 
 jsonData = json.loads(result)
 
-print(json.dumps(jsonData, ensure_ascii=False, indent=2))
+str = json.dumps(jsonData, ensure_ascii=False, indent=2)
+
+with open('./n_research_result.json', 'w+') as json_file:
+    json.dump(jsonData, json_file)
+
+
+
+
+
+#print(json.dumps(jsonData, ensure_ascii=False, indent=2))
 
 # for item in jsonData['items']:
 #     item['']

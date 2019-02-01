@@ -1,6 +1,7 @@
 import requests, json
 from bs4 import BeautifulSoup
 
+
 headers = {
     "X-Naver-Client-Id": "DJp53oSwPDBoa8kGI4tB",
     "X-Naver-Client-Secret": "VCL3gyA7wH"
@@ -47,3 +48,4 @@ for item in items:
     print ("postdate: ", item['postdate'])
 
 #print(json.dumps(jsonData, ensure_ascii=False, indent=2))
+
