@@ -1,7 +1,7 @@
 import statistics
 import re
 import sys
-
+from pprint import pprint
 
 data='''0067011990999991950051507004+68750+023550FM-12+038299999V0203301N00671220001CN9999999N9+00001+99999999999
 0043011990999991945051512004+68750+023550FM-12+038299999V0203201N00671220001CN9999999N9+00225+99999999999
@@ -17,42 +17,45 @@ data='''0067011990999991950051507004+68750+023550FM-12+038299999V0203301N0067122
 0043012650999991943032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00191+99999999999
 0043012650999991949032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00131+99999999999'''
 
-print(data.split('\n'))
+#print(data.split('\n'))
 
 
 items = data.split('\n')
 
-#exit()
 
-
+(last_key, max_val) = (None, -sys.maxsize)
 for item in items:
-    val = item.strip()
+
+    (key, val) = item.strip().split("\t")
+    if last_key and last_key != key:
+
+        print ("%s\t%s" % (last_key, max_val))
+        (last_key, max_val) = (key, int(val))
+
+    else:
+
+        (last_key, max_val) = (key, max(max_val, int(val)))
+
+if last_key:
     
-# #(year, temp, q) = (val[15:19], val[87:92], val[92:93])
-(year, temp, q) = (val[15:19], val[90:92], val[92:93])
+    #print ("%s\t%s" % (last_key, max_val))    
+    samples = ("%s\t%s" % (last_key, max_val))               
 
+def fn1():
+    ret = {}
+    prekey = None
+    for i in samples:
+        # key = i[0]
+        # val = i[1]
+        (key, val) = i
+        if key != prekey:
+            ret[key] = [val]
+            prekey = key
 
-if (temp != "+9999" and re.match("[01459]", q)):
+        else:
+            lst = ret[key]
+            lst.append(val)
 
-
-    print ("%s\t%s" % (year, temp))
-
-
-# import sys
-
-# (last_key, max_val) = (None, -sys.maxsize)
-# for item in items:
-
-#     (key, val) = item.strip().split("\t")
-#     if last_key and last_key != key:
-
-#         print ("%s\t%s" % (last_key, max_val))
-#         (last_key, max_val) = (key, int(val))
-
-#     else:
-
-#         (last_key, max_val) = (key, max(max_val, int(val)))
-
-# if last_key:
-    
-#     print ("%s\t%s" % (last_key, max_val))        
+    pprint(ret)
+    for y, l in ret.items():
+        print(y, max(l))
