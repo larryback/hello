@@ -1,0 +1,4 @@
+The Reduce:
+- reads data from standard input STDIN line-by-line
+- splits the input line by the tab-separator to get the key and its value
+- finds the maximum temperature for each year and prints it to STDOUT
