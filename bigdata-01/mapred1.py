@@ -57,4 +57,5 @@ def fn1():
     for y, l in ret.items():
         print(y, max(l))
 
-fn2()
+#fn2()
+fn1()

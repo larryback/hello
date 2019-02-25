@@ -20,3 +20,4 @@ ttt = [
  ]
 pushResult = client.push_rows(DATABASE, TABLE, ttt, insert_id_key='songno')
 print("Pushed Result is", pushResult)
+
