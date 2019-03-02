@@ -19,4 +19,9 @@ ttt = [
     {'songno': '333', 'title': '홍3', 'albumid': '121212121'},
  ]
 pushResult = client.push_rows(DATABASE, TABLE, ttt, insert_id_key='songno')
+<<<<<<< HEAD
 print("Pushed Result is", pushResult)
+=======
+print("Pushed Result is", pushResult)
+
+>>>>>>> bc0bbb4bf15e08a390da158eaef399fc0a0c9a26
