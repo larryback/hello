@@ -13,6 +13,7 @@ conn = pymysql.connect(
         charset='utf8')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 with conn:
 
     cur = conn.cursor()
@@ -25,6 +26,8 @@ with conn:
 
 #     print(row['songno'], row['title'], row['genre'])    
 =======
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
 # with conn:
 
 #     cur = conn.cursor()
@@ -36,12 +39,16 @@ with conn:
 # # for row in s_rows:
 
 # #     print(row['songno'], row['title'], row['genre'])    
+<<<<<<< HEAD
 >>>>>>> bc0bbb4bf15e08a390da158eaef399fc0a0c9a26
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
 
 with conn:
 
     cur = conn.cursor()
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     cur.execute("select * from Album order by albumid")  
 
@@ -55,6 +62,8 @@ for row in a_rows:
 
 exit()
 =======
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
     cur.execute("select * from (Song s inner join Album a on s.album id = a.album id) order by albumid")  
 
     rows = cur.fetchall()
@@ -68,7 +77,10 @@ for row in rows:
 
 
 #exit()
+<<<<<<< HEAD
 >>>>>>> bc0bbb4bf15e08a390da158eaef399fc0a0c9a26
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
 
 client = bigquery.get_client(json_key_file='./bigquery.json', readonly=False)
 
@@ -80,6 +92,7 @@ if not client.check_table(DATABASE, TABLE):
 
         # create table
         client.create_table(DATABASE, TABLE, [
+<<<<<<< HEAD
 <<<<<<< HEAD
                 {'name': 'songno', 'type': 'integer', 'description': 'song id'},
                 {'name': 'title', 'type': 'string', 'description': 'song title'},
@@ -95,6 +108,8 @@ if not client.check_table(DATABASE, TABLE):
             ])
 
 =======
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
                 {'name': 'albumid', 'type': 'string', 'description': 'album id'},
                 {'name': 'songno', 'type': 'integer', 'description': 'song id'},
                 {'name': 'title', 'type': 'string', 'description': 'song title'},
@@ -118,4 +133,7 @@ pushResult = client.push_rows(DATABASE, TABLE, Album_Song, insert_id_key='albumi
 print("Pushed Result is", pushResult)
 
 
+<<<<<<< HEAD
 >>>>>>> bc0bbb4bf15e08a390da158eaef399fc0a0c9a26
+=======
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348

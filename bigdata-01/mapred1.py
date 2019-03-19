@@ -58,8 +58,13 @@ def fn1():
         print(y, max(l))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 fn2()
 =======
 #fn2()
 fn1()
 >>>>>>> bc0bbb4bf15e08a390da158eaef399fc0a0c9a26
+=======
+#fn2()
+fn1()
+>>>>>>> 4236b33dbf30ad9b102df643cbc7d665f242f348
