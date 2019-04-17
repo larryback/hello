@@ -9,7 +9,7 @@ data = (
 
 with conn:
     cur = conn.cursor()
-    sql = "insert into Student(id, name) values(?,?)"
+    sql = "insert into tt(id, name) values(?,?)"
     cur.executemany(sql, data)
 
     conn.commit()

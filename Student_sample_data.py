@@ -40,12 +40,13 @@ for i in range(0, 1000):
 print(data)
 conn = pymysql.connect(
     host='localhost',
-    user='dooo',
+    user='larryback',
     password='1234',
     port=3306,
     db='dooodb',
     charset='utf8')
 with conn:
+
     cur = conn.cursor()
     sql = "insert into Student(name, tel, email, birth, addr) values(%s,%s,%s,%s,%s)"
     cur.executemany(sql, data)

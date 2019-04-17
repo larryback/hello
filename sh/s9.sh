@@ -1,14 +1,11 @@
 #!/bin/bash
+echo "$0 $@ $1 $#"
 
-if [ $# -eq 0 ]; then
-    echo "Input the filename, please.."
-    echo "usage) ./s5.sh <to-change-file>"
-    exit 0
-fi
+First=$1
 
-DATE=`date +%Y%m%d`
-FN="${DATE}.txt"
-#echo "mv $1 $FN"
+say_hello() {
+	echo "Hello $0 $First by $2!! ($#)"
+}
 
-mv $1 $FN
+say_hello "Jade" "Jeon"
 
